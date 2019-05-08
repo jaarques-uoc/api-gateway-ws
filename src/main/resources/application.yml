@@ -1,0 +1,9 @@
+spring.application.name: api-gateway-ws
+
+# local testing
+# eureka.client.serviceUrl.defaultZone: http://localhost:7100/eureka
+
+# heroku deployment
+eureka.client.serviceUrl.defaultZone: https://eureka-ws.herokuapp.com/eureka
+
+server.port: ${PORT:7000}
