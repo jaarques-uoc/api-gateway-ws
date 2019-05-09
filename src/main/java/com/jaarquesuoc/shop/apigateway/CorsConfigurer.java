@@ -6,7 +6,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class CorsConfigurer implements WebMvcConfigurer {
-    private static final String EDGE_HOSTNAME = "jaarques-uoc.github.io";
+    private static final String EDGE_HOSTNAME = "https://jaarques-uoc.github.io";
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
