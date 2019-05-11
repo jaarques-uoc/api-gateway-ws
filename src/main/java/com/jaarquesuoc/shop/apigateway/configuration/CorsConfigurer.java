@@ -1,4 +1,4 @@
-package com.jaarquesuoc.shop.apigateway;
+package com.jaarquesuoc.shop.apigateway.configuration;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;

@@ -3,3 +3,16 @@ spring.application.name: api-gateway-ws
 eureka.client.serviceUrl.defaultZone: ${EUREKA_URL:http://localhost:7100/eureka}
 
 server.port: ${PORT:7000}
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: basic
+
+servers:
+  - https://api-gateway-ws.herokuapp.com
+  - https://eureka-ws.herokuapp.com
+  - https://customers-ws.herokuapp.com
