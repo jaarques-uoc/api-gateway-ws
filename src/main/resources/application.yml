@@ -16,3 +16,6 @@ servers:
   - https://api-gateway-ws.herokuapp.com
   - https://eureka-ws.herokuapp.com
   - https://customers-ws.herokuapp.com
+  - https://products-ws.herokuapp.com
+  - https://orders-ws.herokuapp.com
+  - https://carts-ws.herokuapp.com
