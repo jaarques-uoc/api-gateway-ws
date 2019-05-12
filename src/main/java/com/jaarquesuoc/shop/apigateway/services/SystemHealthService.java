@@ -1,8 +1,8 @@
 package com.jaarquesuoc.shop.apigateway.services;
 
 import com.jaarquesuoc.shop.apigateway.configuration.ServersProperties;
-import com.jaarquesuoc.shop.apigateway.dtos.ServiceHealth;
-import com.jaarquesuoc.shop.apigateway.dtos.SystemHealth;
+import com.jaarquesuoc.shop.apigateway.dtos.ServiceHealthDto;
+import com.jaarquesuoc.shop.apigateway.dtos.SystemHealthDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,27 +20,27 @@ public class SystemHealthService {
 
     private final ServersProperties serversProperties;
 
-    public SystemHealth checkSystemHealth() {
-        return SystemHealth.builder()
+    public SystemHealthDto checkSystemHealth() {
+        return SystemHealthDto.builder()
             .services(serversProperties.getServers().stream()
                 .map(this::checkServiceHealth)
                 .collect(toList()))
             .build();
     }
 
-    private ServiceHealth checkServiceHealth(final String url) {
-        ServiceHealth serviceHealth;
+    private ServiceHealthDto checkServiceHealth(final String url) {
+        ServiceHealthDto serviceHealthDto;
 
         try {
-            serviceHealth = healthClient.healthCheck(URI.create(url));
-            serviceHealth.setUrl(url);
+            serviceHealthDto = healthClient.healthCheck(URI.create(url));
+            serviceHealthDto.setUrl(url);
         } catch (Exception e) {
-            serviceHealth = ServiceHealth.builder()
+            serviceHealthDto = ServiceHealthDto.builder()
                 .url(url)
                 .status(DOWN)
                 .build();
         }
 
-        return serviceHealth;
+        return serviceHealthDto;
     }
 }

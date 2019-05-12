@@ -8,6 +8,6 @@ import java.util.List;
 
 @Data
 @Builder
-public class SystemHealth {
-    private List<ServiceHealth> services;
+public class SystemHealthDto {
+    private List<ServiceHealthDto> services;
 }

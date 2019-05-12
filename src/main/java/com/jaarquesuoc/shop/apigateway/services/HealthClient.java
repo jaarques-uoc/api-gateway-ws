@@ -1,6 +1,6 @@
 package com.jaarquesuoc.shop.apigateway.services;
 
-import com.jaarquesuoc.shop.apigateway.dtos.ServiceHealth;
+import com.jaarquesuoc.shop.apigateway.dtos.ServiceHealthDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -10,5 +10,5 @@ import java.net.URI;
 public interface HealthClient {
 
     @GetMapping("/actuator/health")
-    ServiceHealth healthCheck(URI uri);
+    ServiceHealthDto healthCheck(URI uri);
 }

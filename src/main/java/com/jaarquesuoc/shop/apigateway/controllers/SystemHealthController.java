@@ -1,6 +1,6 @@
 package com.jaarquesuoc.shop.apigateway.controllers;
 
-import com.jaarquesuoc.shop.apigateway.dtos.SystemHealth;
+import com.jaarquesuoc.shop.apigateway.dtos.SystemHealthDto;
 import com.jaarquesuoc.shop.apigateway.services.SystemHealthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ public class SystemHealthController {
     private final SystemHealthService systemHealthService;
 
     @GetMapping("/system/health")
-    public SystemHealth systemHealth() {
+    public SystemHealthDto systemHealth() {
         return systemHealthService.checkSystemHealth();
     }
 }
