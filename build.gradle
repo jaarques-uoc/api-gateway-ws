@@ -3,6 +3,12 @@ plugins {
 	id 'java'
 }
 
+bootRun {
+	if (project.hasProperty('profiles')) {
+		environment SPRING_PROFILES_ACTIVE: profiles
+	}
+}
+
 apply plugin: 'io.spring.dependency-management'
 
 group = 'com.jaarquesuoc.shop'
@@ -25,7 +31,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-configuration-processor'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
-	testCompile('org.springframework.boot:spring-boot-starter-test')
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 dependencyManagement {

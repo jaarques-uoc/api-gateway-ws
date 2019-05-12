@@ -19,3 +19,5 @@ servers:
   - https://products-ws.herokuapp.com
   - https://orders-ws.herokuapp.com
   - https://carts-ws.herokuapp.com
+
+edge-hostname: https://jaarques-uoc.github.io

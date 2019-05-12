@@ -3,7 +3,7 @@
 Command line tools:
 * Spring boot:
     * build: `./gradlew build`
-    * run: `./gradlew bootRun`
+    * run in localhost: `./gradlew bootRun -Pprofiles=local`
 * Docker:
     * build: `docker build --tag=api-gateway-ws .`
     * run: `docker run -p 7000:8080 -t api-gateway-ws`

@@ -12,4 +12,6 @@ import java.util.List;
 public class ServersProperties {
 
     private List<String> servers;
+
+    private String edgeHostname;
 }
