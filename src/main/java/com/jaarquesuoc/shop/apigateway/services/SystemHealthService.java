@@ -1,15 +1,15 @@
 package com.jaarquesuoc.shop.apigateway.services;
 
 import com.jaarquesuoc.shop.apigateway.configuration.ServersProperties;
-import com.jaarquesuoc.shop.apigateway.models.ServiceHealth;
-import com.jaarquesuoc.shop.apigateway.models.SystemHealth;
+import com.jaarquesuoc.shop.apigateway.dtos.ServiceHealth;
+import com.jaarquesuoc.shop.apigateway.dtos.SystemHealth;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.net.URI;
 
-import static com.jaarquesuoc.shop.apigateway.models.HealthStatus.DOWN;
+import static com.jaarquesuoc.shop.apigateway.dtos.HealthStatus.DOWN;
 import static java.util.stream.Collectors.toList;
 
 @Service

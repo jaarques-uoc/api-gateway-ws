@@ -1,6 +1,6 @@
 package com.jaarquesuoc.shop.apigateway.services;
 
-import com.jaarquesuoc.shop.apigateway.models.ServiceHealth;
+import com.jaarquesuoc.shop.apigateway.dtos.ServiceHealth;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 

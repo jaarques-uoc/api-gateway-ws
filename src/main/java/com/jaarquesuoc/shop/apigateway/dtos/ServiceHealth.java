@@ -1,4 +1,4 @@
-package com.jaarquesuoc.shop.apigateway.models;
+package com.jaarquesuoc.shop.apigateway.dtos;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

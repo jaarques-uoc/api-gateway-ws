@@ -1,6 +1,6 @@
 package com.jaarquesuoc.shop.apigateway.controllers;
 
-import com.jaarquesuoc.shop.apigateway.models.SystemHealth;
+import com.jaarquesuoc.shop.apigateway.dtos.SystemHealth;
 import com.jaarquesuoc.shop.apigateway.services.SystemHealthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
