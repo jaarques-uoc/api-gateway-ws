@@ -22,10 +22,10 @@ hystrix:
 
 servers:
   - https://api-gateway-ws.herokuapp.com
-  - https://eureka-ws.herokuapp.com
-  - https://customers-ws.herokuapp.com
-  - https://products-ws.herokuapp.com
-  - https://orders-ws.herokuapp.com
-  - https://carts-ws.herokuapp.com
+  - https://api-gateway-ws.herokuapp.com/eureka-ws
+  - https://api-gateway-ws.herokuapp.com/customers-ws
+  - https://api-gateway-ws.herokuapp.com/products-ws
+  - https://api-gateway-ws.herokuapp.com/orders-ws
+  - https://api-gateway-ws.herokuapp.com/carts-ws
 
 edge-hostname: https://jaarques-uoc.github.io
