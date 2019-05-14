@@ -22,7 +22,7 @@ hystrix:
 
 servers:
   - https://api-gateway-ws.herokuapp.com
-  - https://api-gateway-ws.herokuapp.com/eureka-ws
+  - https://eureka-ws.herokuapp.com
   - https://api-gateway-ws.herokuapp.com/customers-ws
   - https://api-gateway-ws.herokuapp.com/products-ws
   - https://api-gateway-ws.herokuapp.com/orders-ws

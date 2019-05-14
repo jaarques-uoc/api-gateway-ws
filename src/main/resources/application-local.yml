@@ -1,9 +1,9 @@
 servers:
   - http://localhost:7000
-  - https://localhost:7000/eureka-ws
-  - https://localhost:7000/customers-ws
-  - https://localhost:7000/products-ws
-  - https://localhost:7000/orders-ws
-  - https://localhost:7000/carts-ws
+  - http://localhost:7100
+  - http://localhost:7000/customers-ws
+  - http://localhost:7000/products-ws
+  - http://localhost:7000/orders-ws
+  - http://localhost:7000/carts-ws
 
 edge-hostname: http://localhost:3000
