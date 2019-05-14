@@ -20,21 +20,20 @@ hystrix:
           thread:
             timeoutInMilliseconds: 5000
 
-servers:
-  health:
-    - https://api-gateway-ws.herokuapp.com
-    - https://eureka-ws.herokuapp.com
-    - https://api-gateway-ws.herokuapp.com/customers-ws
-    - https://api-gateway-ws.herokuapp.com/products-ws
-    - https://api-gateway-ws.herokuapp.com/orders-ws
-    - https://api-gateway-ws.herokuapp.com/carts-ws
-  wakeup:
-    - https://api-gateway-ws.herokuapp.com
-    - https://eureka-ws.herokuapp.com
-    - https://customers-ws.herokuapp.com
-    - https://products-ws.herokuapp.com
-    - https://orders-ws.herokuapp.com
-    - https://carts-ws.herokuapp.com
+healthServers:
+  - https://api-gateway-ws.herokuapp.com
+  - https://eureka-ws.herokuapp.com
+  - https://api-gateway-ws.herokuapp.com/customers-ws
+  - https://api-gateway-ws.herokuapp.com/products-ws
+  - https://api-gateway-ws.herokuapp.com/orders-ws
+  - https://api-gateway-ws.herokuapp.com/carts-ws
+wakeupServers:
+  - https://api-gateway-ws.herokuapp.com
+  - https://eureka-ws.herokuapp.com
+  - https://customers-ws.herokuapp.com
+  - https://products-ws.herokuapp.com
+  - https://orders-ws.herokuapp.com
+  - https://carts-ws.herokuapp.com
 
 
 edge-hostname: https://jaarques-uoc.github.io
