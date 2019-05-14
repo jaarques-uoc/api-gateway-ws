@@ -1,6 +1,7 @@
 package com.jaarquesuoc.shop.apigateway.services;
 
 import com.jaarquesuoc.shop.apigateway.configuration.ServersProperties;
+import com.jaarquesuoc.shop.apigateway.configuration.ServersProperties.Servers;
 import com.jaarquesuoc.shop.apigateway.dtos.ServiceHealthDto;
 import com.jaarquesuoc.shop.apigateway.dtos.SystemHealthDto;
 import lombok.RequiredArgsConstructor;
@@ -21,11 +22,21 @@ public class SystemHealthService {
     private final ServersProperties serversProperties;
 
     public SystemHealthDto checkSystemHealth() {
-        return SystemHealthDto.builder()
-            .services(serversProperties.getServers().stream()
+        Servers servers = serversProperties.getServers();
+
+        SystemHealthDto systemHealthDto = SystemHealthDto.builder()
+            .services(servers.getHealth().stream()
                 .map(this::checkServiceHealth)
                 .collect(toList()))
             .build();
+
+        systemHealthDto.getServices().stream()
+            .filter(service -> service.getStatus() == DOWN)
+            .findFirst()
+            .ifPresent(dontCare -> servers.getWakeup()
+                .forEach(this::wakeUp));
+
+        return systemHealthDto;
     }
 
     private ServiceHealthDto checkServiceHealth(final String url) {
@@ -42,5 +53,12 @@ public class SystemHealthService {
         }
 
         return serviceHealthDto;
+    }
+
+    private void wakeUp(final String url) {
+        try {
+            healthClient.healthCheck(URI.create(url));
+        } catch (Exception e) {
+        }
     }
 }
