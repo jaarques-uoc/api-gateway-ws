@@ -11,15 +11,9 @@ import java.util.List;
 @Data
 public class ServersProperties {
 
-    private Servers servers;
+    private List<String> healthServers;
+
+    private List<String> wakeupServers;
 
     private String edgeHostname;
-
-    @Data
-    public class Servers {
-
-        private List<String> health;
-
-        private List<String> wakeup;
-    }
 }
