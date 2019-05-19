@@ -21,7 +21,7 @@ public class InitialisationService {
     private final ServersProperties serversProperties;
 
     public List<InitialisationDto> initialiseSystem() {
-        return serversProperties.getHealthServers().stream()
+        return serversProperties.getInitServers().stream()
             .map(this::initialiseService)
             .collect(toList());
     }

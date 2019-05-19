@@ -15,5 +15,7 @@ public class ServersProperties {
 
     private List<String> wakeupServers;
 
+    private List<String> initServers;
+
     private String edgeHostname;
 }

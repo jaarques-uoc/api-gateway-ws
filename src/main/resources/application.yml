@@ -34,6 +34,11 @@ wakeupServers:
   - https://products-ws.herokuapp.com
   - https://orders-ws.herokuapp.com
   - https://carts-ws.herokuapp.com
+initServers:
+  - https://api-gateway-ws.herokuapp.com/customers-ws
+  - https://api-gateway-ws.herokuapp.com/products-ws
+  - https://api-gateway-ws.herokuapp.com/orders-ws
+  - https://api-gateway-ws.herokuapp.com/carts-ws
 
 
 edge-hostname: https://jaarques-uoc.github.io

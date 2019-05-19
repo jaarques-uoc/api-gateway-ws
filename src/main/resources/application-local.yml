@@ -5,5 +5,10 @@ healthServers:
   - http://localhost:7000/products-ws
   - http://localhost:7000/orders-ws
   - http://localhost:7000/carts-ws
+initServers:
+  - http://localhost:7000/customers-ws
+  - http://localhost:7000/products-ws
+  - http://localhost:7000/orders-ws
+  - http://localhost:7000/carts-ws
 
 edge-hostname: http://localhost:3000
