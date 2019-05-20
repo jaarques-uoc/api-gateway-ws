@@ -8,8 +8,8 @@ feign:
   client:
     config:
       default:
-        connectTimeout: 5000
-        readTimeout: 5000
+        connectTimeout: 12000
+        readTimeout: 12000
         loggerLevel: basic
 
 hystrix:
@@ -18,7 +18,10 @@ hystrix:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: 5000
+            timeoutInMilliseconds: 11000
+ribbon:
+  ConnectTimeout: 10000
+  ReadTimeout: 10000
 
 healthServers:
   - https://api-gateway-ws.herokuapp.com
