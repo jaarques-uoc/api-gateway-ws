@@ -6,7 +6,7 @@ Command line tools:
     * run in localhost: `./gradlew bootRun -Pprofiles=local`
 * Docker:
     * build: `docker build --tag=api-gateway-ws .`
-    * run: `docker run -p 7000:8080 -t api-gateway-ws`
+    * run: `docker run -p 7000:7000 -t api-gateway-ws`
     * stop: `docker stop $(docker ps -q --filter ancestor=api-gateway-ws)`
     * stop all containers: `docker stop $(docker ps -a -q)`
 
