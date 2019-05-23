@@ -10,7 +10,10 @@ Command line tools:
     * stop: `docker stop $(docker ps -q --filter ancestor=api-gateway-ws)`
     * stop all containers: `docker stop $(docker ps -a -q)`
 
-* Urls:
-    * Travis CI history: https://travis-ci.com/jaarques-uoc/api-gateway-ws/
-    * Docker image: https://cloud.docker.com/repository/docker/jaarquesuoc/api-gateway-ws
-    * Heroku app health-check: https://api-gateway-ws.herokuapp.com/actuator/health
+Initialization endpoint:
+* `curl localhost:7000/init`: It redirects the initialisation call to the rest of the microservices.
+
+Monitoring urls:
+* Travis CI history: https://travis-ci.com/jaarques-uoc/api-gateway-ws/
+* Docker image: https://cloud.docker.com/repository/docker/jaarquesuoc/api-gateway-ws
+* Heroku app health-check: https://api-gateway-ws.herokuapp.com/actuator/health
