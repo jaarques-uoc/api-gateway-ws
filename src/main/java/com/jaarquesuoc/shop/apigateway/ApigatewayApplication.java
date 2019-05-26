@@ -16,8 +16,8 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 @SpringBootApplication
 public class ApigatewayApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(ApigatewayApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(ApigatewayApplication.class, args);
+    }
 
 }
