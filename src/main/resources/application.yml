@@ -23,9 +23,13 @@ ribbon:
   ConnectTimeout: 10000
   ReadTimeout: 10000
 
+zuul:
+  sensitiveHeaders: Cookie,Set-Cookie
+
 healthServers:
   - https://api-gateway-ws.herokuapp.com
   - https://eureka-ws.herokuapp.com
+  - https://api-gateway-ws.herokuapp.com/auth-ws
   - https://api-gateway-ws.herokuapp.com/customers-ws
   - https://api-gateway-ws.herokuapp.com/products-ws
   - https://api-gateway-ws.herokuapp.com/orders-ws
@@ -33,6 +37,7 @@ healthServers:
 wakeupServers:
   - https://api-gateway-ws.herokuapp.com
   - https://eureka-ws.herokuapp.com
+  - https://auth-ws.herokuapp.com
   - https://customers-ws.herokuapp.com
   - https://products-ws.herokuapp.com
   - https://orders-ws.herokuapp.com
