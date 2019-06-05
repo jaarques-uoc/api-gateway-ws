@@ -6,11 +6,15 @@ import com.jaarquesuoc.shop.apigateway.dtos.SystemHealthDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+import reactor.core.scheduler.Scheduler;
+import reactor.core.scheduler.Schedulers;
 
 import java.net.URI;
+import java.util.List;
 
 import static com.jaarquesuoc.shop.apigateway.dtos.HealthStatus.DOWN;
-import static java.util.stream.Collectors.toList;
 
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
@@ -20,20 +24,26 @@ public class SystemHealthService {
 
     private final ServersProperties serversProperties;
 
+    private final Scheduler scheduler = Schedulers.newParallel("healthScheduler", 10);
+
     public SystemHealthDto checkSystemHealth() {
+        List<ServiceHealthDto> serviceHealthDtos = checkParallelServiceHealth(serversProperties.getHealthServers())
+            .collectList()
+            .block();
+
         SystemHealthDto systemHealthDto = SystemHealthDto.builder()
-            .services(serversProperties.getHealthServers().stream()
-                .map(this::checkServiceHealth)
-                .collect(toList()))
+            .services(serviceHealthDtos)
             .build();
 
-        systemHealthDto.getServices().stream()
-            .filter(service -> service.getStatus() == DOWN)
-            .findFirst()
-            .ifPresent(dontCare -> serversProperties.getWakeupServers()
-                .forEach(this::wakeUp));
+        wakeUpDownServices(systemHealthDto);
 
         return systemHealthDto;
+    }
+
+    private Flux<ServiceHealthDto> checkParallelServiceHealth(final List<String> serverUrls) {
+        return Flux.fromIterable(serverUrls)
+            .flatMap(serverUrl -> Mono.defer(() -> Mono.just(checkServiceHealth(serverUrl)))
+                .subscribeOn(scheduler));
     }
 
     private ServiceHealthDto checkServiceHealth(final String url) {
@@ -52,10 +62,10 @@ public class SystemHealthService {
         return serviceHealthDto;
     }
 
-    private void wakeUp(final String url) {
-        try {
-            healthClient.healthCheck(URI.create(url));
-        } catch (Exception e) {
-        }
+    private void wakeUpDownServices(final SystemHealthDto systemHealthDto) {
+        systemHealthDto.getServices().stream()
+            .filter(service -> service.getStatus() == DOWN)
+            .findFirst()
+            .ifPresent(dontCare -> checkParallelServiceHealth(serversProperties.getWakeupServers()));
     }
 }

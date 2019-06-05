@@ -5,12 +5,15 @@ import com.jaarquesuoc.shop.apigateway.dtos.InitialisationDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+import reactor.core.scheduler.Scheduler;
+import reactor.core.scheduler.Schedulers;
 
 import java.net.URI;
 import java.util.List;
 
 import static com.jaarquesuoc.shop.apigateway.dtos.InitialisationDto.InitialisationStatus.KO;
-import static java.util.stream.Collectors.toList;
 
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
@@ -20,10 +23,18 @@ public class InitialisationService {
 
     private final ServersProperties serversProperties;
 
+    private final Scheduler scheduler = Schedulers.newParallel("initScheduler", 10);
+
     public List<InitialisationDto> initialiseSystem() {
-        return serversProperties.getInitServers().stream()
-            .map(this::initialiseService)
-            .collect(toList());
+        return initialiseParallelServices(serversProperties.getInitServers())
+            .collectList()
+            .block();
+    }
+
+    private Flux<InitialisationDto> initialiseParallelServices(final List<String> serverUrls) {
+        return Flux.fromIterable(serverUrls)
+            .flatMap(serverUrl -> Mono.defer(() -> Mono.just(initialiseService(serverUrl)))
+                .subscribeOn(scheduler));
     }
 
     private InitialisationDto initialiseService(final String url) {
