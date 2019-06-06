@@ -50,7 +50,6 @@ public class SystemHealthService {
         ServiceHealthDto serviceHealthDto;
 
         try {
-            Thread.sleep(10000);
             serviceHealthDto = healthClient.healthCheck(URI.create(url));
             serviceHealthDto.setUrl(url);
         } catch (Exception e) {
