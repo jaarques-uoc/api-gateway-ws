@@ -50,6 +50,7 @@ public class SystemHealthService {
         ServiceHealthDto serviceHealthDto;
 
         try {
+            Thread.sleep(10000);
             serviceHealthDto = healthClient.healthCheck(URI.create(url));
             serviceHealthDto.setUrl(url);
         } catch (Exception e) {
@@ -66,6 +67,7 @@ public class SystemHealthService {
         systemHealthDto.getServices().stream()
             .filter(service -> service.getStatus() == DOWN)
             .findFirst()
-            .ifPresent(dontCare -> checkParallelServiceHealth(serversProperties.getWakeupServers()));
+            .ifPresent(dontCare -> checkParallelServiceHealth(serversProperties.getWakeupServers())
+                .subscribe());
     }
 }
