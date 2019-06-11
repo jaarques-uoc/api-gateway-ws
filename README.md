@@ -17,3 +17,6 @@ Monitoring urls:
 * Travis CI history: https://travis-ci.com/jaarques-uoc/api-gateway-ws/
 * Docker image: https://cloud.docker.com/repository/docker/jaarquesuoc/api-gateway-ws
 * Heroku app health-check: https://api-gateway-ws.herokuapp.com/actuator/health
+* System:
+    * health: https://api-gateway-ws.herokuapp.com/system/health
+    * Initialisation: https://api-gateway-ws.herokuapp.com/init
