@@ -28,12 +28,12 @@ public class SystemHealthService {
 
     public SystemHealthDto checkSystemHealth() {
         List<ServiceHealthDto> serviceHealthDtos = checkParallelServiceHealth(serversProperties.getHealthServers())
-            .collectList()
-            .block();
+                .collectList()
+                .block();
 
         SystemHealthDto systemHealthDto = SystemHealthDto.builder()
-            .services(serviceHealthDtos)
-            .build();
+                .services(serviceHealthDtos)
+                .build();
 
         wakeUpDownServices(systemHealthDto);
 
@@ -42,8 +42,8 @@ public class SystemHealthService {
 
     private Flux<ServiceHealthDto> checkParallelServiceHealth(final List<String> serverUrls) {
         return Flux.fromIterable(serverUrls)
-            .flatMap(serverUrl -> Mono.defer(() -> Mono.just(checkServiceHealth(serverUrl)))
-                .subscribeOn(scheduler));
+                .flatMap(serverUrl -> Mono.defer(() -> Mono.just(checkServiceHealth(serverUrl)))
+                        .subscribeOn(scheduler));
     }
 
     private ServiceHealthDto checkServiceHealth(final String url) {
@@ -54,9 +54,9 @@ public class SystemHealthService {
             serviceHealthDto.setUrl(url);
         } catch (Exception e) {
             serviceHealthDto = ServiceHealthDto.builder()
-                .url(url)
-                .status(DOWN)
-                .build();
+                    .url(url)
+                    .status(DOWN)
+                    .build();
         }
 
         return serviceHealthDto;
@@ -64,9 +64,9 @@ public class SystemHealthService {
 
     private void wakeUpDownServices(final SystemHealthDto systemHealthDto) {
         systemHealthDto.getServices().stream()
-            .filter(service -> service.getStatus() == DOWN)
-            .findFirst()
-            .ifPresent(dontCare -> checkParallelServiceHealth(serversProperties.getWakeupServers())
-                .subscribe());
+                .filter(service -> service.getStatus() == DOWN)
+                .findFirst()
+                .ifPresent(dontCare -> checkParallelServiceHealth(serversProperties.getWakeupServers())
+                        .subscribe());
     }
 }

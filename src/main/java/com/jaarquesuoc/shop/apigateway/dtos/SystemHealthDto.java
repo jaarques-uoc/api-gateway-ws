@@ -9,5 +9,6 @@ import java.util.List;
 @Data
 @Builder
 public class SystemHealthDto {
+
     private List<ServiceHealthDto> services;
 }

@@ -27,14 +27,14 @@ public class InitialisationService {
 
     public List<InitialisationDto> initialiseSystem() {
         return initialiseParallelServices(serversProperties.getInitServers())
-            .collectList()
-            .block();
+                .collectList()
+                .block();
     }
 
     private Flux<InitialisationDto> initialiseParallelServices(final List<String> serverUrls) {
         return Flux.fromIterable(serverUrls)
-            .flatMap(serverUrl -> Mono.defer(() -> Mono.just(initialiseService(serverUrl)))
-                .subscribeOn(scheduler));
+                .flatMap(serverUrl -> Mono.defer(() -> Mono.just(initialiseService(serverUrl)))
+                        .subscribeOn(scheduler));
     }
 
     private InitialisationDto initialiseService(final String url) {
@@ -45,9 +45,9 @@ public class InitialisationService {
             initialisationDto.setUrl(url);
         } catch (Exception e) {
             initialisationDto = InitialisationDto.builder()
-                .url(url)
-                .initialisationStatus(KO)
-                .build();
+                    .url(url)
+                    .initialisationStatus(KO)
+                    .build();
         }
 
         return initialisationDto;

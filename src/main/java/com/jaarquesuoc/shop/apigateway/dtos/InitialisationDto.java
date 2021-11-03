@@ -11,11 +11,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class InitialisationDto {
 
-    public enum InitialisationStatus {OK, KO}
-
     private String url;
-
     private InitialisationStatus initialisationStatus;
-
     private Object metadata;
+
+    public enum InitialisationStatus {OK, KO}
 }
